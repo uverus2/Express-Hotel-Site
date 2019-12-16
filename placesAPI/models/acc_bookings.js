@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const BookingsSchema = new mongoose.Schema({
     acc_id: {
         type: Number,
-        unique: true,
         required: true
     },
-    thedate: {
+    theDate: {
         type: Number,
         required: true
     },

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const AccomodationSchema = new mongoose.Schema({
+    _id: { type: String },
     name: {
         type: String,
         unique: true,

@@ -4,14 +4,23 @@ const app = express();
 const mongoose = require("mongoose");
 const { server } = require("./placesAPI/config/serverConfig");
 const routes = require("./placesAPI/routes/routes");
+const cors = require('cors');
 
 
-mongoose.connect('mongodb://localhost:27017/node1905', { useNewUrlParser: true }).then(connect => console.log("Database Connected")).catch(error => console.log(error))
+mongoose.connect('mongodb://localhost:27017/node1905', {
+    useNewUrlParser: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+}).then(connect => console.log("Database Connected")).catch(error => console.log(`DB Connection Error: ${error.message}`));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/api/", routes)
+
+app.use(cors());
+app.use("/api/", routes);
 
 app.use((req, res, next) => {
-    const err = new Error("Not Found");
+    const err = new Error("Route is Not Found");
     err.status = 404;
     next(err);
 });
