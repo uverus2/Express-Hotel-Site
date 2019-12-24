@@ -15,8 +15,9 @@ mongoose.connect('mongodb://localhost:27017/node1905', {
     useUnifiedTopology: true
 }).then(connect => console.log("Database Connected")).catch(error => console.log(`DB Connection Error: ${error.message}`));
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
 app.use(cors());
+
 app.use("/api/", routes);
 
 app.use((req, res, next) => {

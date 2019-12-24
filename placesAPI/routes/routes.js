@@ -3,14 +3,15 @@ const router = express.Router();
 const functions = require("../functions/functions");
 const { check, param, validationResult } = require('express-validator');
 
+
 // Route get Location 
-router.get("/location", [
-    check("location").exists().withMessage("Location must be supplied").isLength({ min: 1 }).withMessage('Location must not be empty').isAlpha().withMessage('Only letters are allowed')
+router.get("/location/:location", [
+    param("location").isLength({ min: 1 }).withMessage('Location must not be empty').isAlpha().withMessage('Only letters are allowed')
 ], async(req, res) => {
     try {
         const errors = validationResult(req);
         await functions.errorCheck(errors, 400);
-        const location = req.body.location;
+        const location = req.params.location;
         const locationData = await functions.findAccomodation(location);
         res.json(locationData);
     } catch (e) {
@@ -18,15 +19,30 @@ router.get("/location", [
     }
 });
 
+// Route get Location 
+router.get("/availability/:id", [
+    param("id").isLength({ min: 1 }).withMessage('ID must not be empty').isInt().withMessage('Only numbers are allowed')
+], async(req, res) => {
+    try {
+        const errors = validationResult(req);
+        await functions.errorCheck(errors, 400);
+        const acc_id = req.params.id;
+        const availabilityData = await functions.availabilityInfo(acc_id);
+        res.json(availabilityData);
+    } catch (e) {
+        res.status(e.status).json(e.error);
+    }
+});
+
 // Route gets Location of a certain type
-router.get("/locationType/:type", [
-    check("location").exists().withMessage("Location must be supplied").isLength({ min: 1 }).withMessage('Location must not be empty').isAlpha().withMessage('Only letters are allowed'),
+router.get("/location/:location/:type", [
+    param("location").isLength({ min: 1 }).withMessage('Location must not be empty').isAlpha().withMessage('Only letters are allowed'),
     param("type").isAlpha().withMessage('Only letters are allowed for the Type').isIn(["hotel", "campsite", "BandB", "pub"]).withMessage('Type must be either a hotel, campsite, BandB or pub')
 ], async(req, res) => {
     try {
         const errors = validationResult(req);
         await functions.errorCheck(errors, 400);
-        const location = req.body.location;
+        const location = req.params.location;
         const locationType = req.params.type;
         const locationDataWithType = await functions.findAccomodationAndType(location, locationType);
         res.json(locationDataWithType);
@@ -70,7 +86,7 @@ router.post("/booking", [
         const errors = validationResult(req);
         await functions.errorCheck(errors, 400);
         const retriveAvailabilityFinal = await functions.retriveAvailabilityOnDate(req.body.acc_id, req.body.theDate, req.body.npeople);
-        console.log(retriveAvailabilityFinal);
+
         const boookingDetails = {
             acc_id: req.body.acc_id,
             theDate: req.body.theDate,
@@ -82,11 +98,12 @@ router.post("/booking", [
         res.status(inserBookingFunction.status).json(inserBookingFunction.message);
 
     } catch (e) {
-        res.status(e.status).json(e.error);
+        if (e.hasOwnProperty("errorDetails")) {
+            res.status(e.errorDetails.status).json(e);
+        } else {
+            res.status(e.status).json(e.error);
+        }
     }
 });
-
-
-
 
 module.exports = router

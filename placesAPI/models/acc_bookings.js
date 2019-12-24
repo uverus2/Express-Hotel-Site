@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const BookingsSchema = new mongoose.Schema({
     acc_id: {
-        type: Number,
+        type: String,
         required: true
     },
     theDate: {
-        type: Number,
+        type: String,
         required: true
     },
     username: {
@@ -14,7 +14,7 @@ const BookingsSchema = new mongoose.Schema({
         required: true
     },
     npeople: {
-        type: Number,
+        type: String,
         required: true
     }
 });

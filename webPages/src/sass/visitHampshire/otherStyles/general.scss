@@ -1,0 +1,79 @@
+.hero {
+    background: url("../images/heroVisit.jpg");
+    height: 60vh;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: fixed;
+}
+
+#canvasBody {
+    height: auto;
+}
+
+.availability a {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.availability a:hover {
+    text-decoration: underline;
+    color: #625311;
+}
+
+#calendar {
+    height: 600px;
+    width: 100%;
+}
+
+body h2,
+body h3 {
+    color: #625311;
+    font-weight: bold;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 1.3rem;
+}
+
+.panels {
+    border: solid 2px#625311;
+}
+
+.panels:hover {
+    border: solid 5px#625311;
+}
+
+.tagName {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    color: #C5A649;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #625311;
+    border-color: #625311;
+}
+
+.btn-primary:hover {
+    background-color: #C5A649;
+    border-color: #C5A649;
+}
+
+.btn-outline-primary {
+    color: #625311;
+    border-color: #625311;
+}
+
+.btn-outline-primary:hover {
+    color: #ffffff;
+    background-color: #625311;
+    border-color: #625311;
+}
+
+.form-control:focus {
+    border-color: #625311;
+    box-shadow: 0 0 0 0.2rem rgba(98, 83, 17);
+}

@@ -1,0 +1,45 @@
+.hero {
+    background: url("../images/heroPlaces.jpg");
+    height: 60vh;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: fixed;
+}
+
+body h2,
+body h3 {
+    color: #EA5A00;
+    font-weight: bold;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 1.3rem;
+}
+
+.panels {
+    border: solid 2px#EA5A00;
+}
+
+.tagName {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    color: #A00603;
+}
+
+.btn-outline-primary {
+    color: #EA5A00;
+    border-color: #EA5A00;
+}
+
+.btn-outline-primary:hover {
+    color: #ffffff;
+    background-color: #EA5A00;
+    border-color: #EA5A00;
+}
+
+.form-control:focus {
+    border-color: #EA5A00;
+    box-shadow: 0 0 0 0.2rem rgba(234, 90, 0);
+}

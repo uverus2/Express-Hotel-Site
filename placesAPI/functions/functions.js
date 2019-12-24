@@ -45,23 +45,56 @@ const findAccomodationAndType = (location, type) => {
     });
 };
 
-const retriveAvailabilityOnDate = (acc_id, date, npeople) => {
+const availabilityInfo = (acc_id) => {
+
     return new Promise((resolve, reject) => {
-        let errorMessage = {};
-        Dates.find({ acc_id: acc_id, thedate: date }, (err, data) => {
+        let errorMessage = {
+            errorDetails: {
+                msg: "",
+                status: ""
+            }
+        };
+        Dates.find({ acc_id: acc_id }, null, { limit: 20 }).sort({ thedate: 'asc' }).exec((err, data) => {
             if (err) {
-                errorMessage.error = err;
-                errorMessage.status = 500;
+                errorMessage.errorDetails.msg = err;
+                errorMessage.errorDetails.status = 500;
                 reject(errorMessage);
             } else {
                 if (data === null || data.length <= 0) {
-                    errorMessage.error = "No Availability information found for this Accomodation on this Date";
-                    errorMessage.status = 404;
+                    errorMessage.errorDetails.msg = "Place not found or no availability information";
+                    errorMessage.errorDetails.status = 404;
+                    reject(errorMessage);
+                } else {
+                    resolve(data);
+                }
+            }
+        });
+
+    });
+}
+
+const retriveAvailabilityOnDate = (acc_id, date, npeople) => {
+    return new Promise((resolve, reject) => {
+        let errorMessage = {
+            errorDetails: {
+                msg: "",
+                status: ""
+            }
+        };
+        Dates.find({ acc_id: acc_id, thedate: date }, (err, data) => {
+            if (err) {
+                errorMessage.errorDetails.msg = err;
+                errorMessage.errorDetails.status = 500;
+                reject(errorMessage);
+            } else {
+                if (data === null || data.length <= 0) {
+                    errorMessage.errorDetails.msg = "No Availability information found for this Accomodation on this Date";
+                    errorMessage.errorDetails.status = 404;
                     reject(errorMessage);
                 } else {
                     if (Number(npeople) > Number(data[0].availability)) {
-                        errorMessage.error = "No Places availbale on this date";
-                        errorMessage.status = 422;
+                        errorMessage.errorDetails.msg = "No Places availbale on this date";
+                        errorMessage.errorDetails.status = 422;
                         reject(errorMessage);
                     } else {
                         const availabilityScore = Number(data[0].availability) - Number(npeople);
@@ -93,7 +126,11 @@ const checkIfAccomodationExists = acc_id => {
 };
 
 const errorCheck = (errors, status) => {
-    let error = {}
+    let error = {
+        error: {
+
+        }
+    }
     return new Promise((resolve, reject) => {
         if (!errors.isEmpty()) {
             error.status = status;
@@ -107,11 +144,16 @@ const errorCheck = (errors, status) => {
 
 const insertBooking = (bookingData) => {
     return new Promise((resolve, reject) => {
-        let errorMessage = {}
+        let errorMessage = {
+            errorDetails: {
+                msg: "",
+                status: ""
+            }
+        }
         Bookings.create(bookingData, (err) => {
             if (err) {
-                errorMessage.error = err;
-                errorMessage.status = 500;
+                errorMessage.errorDetails.msg = err;
+                errorMessage.errorDetails.status = 500;
                 reject(errorMessage);
             } else {
                 const successMessage = {
@@ -147,5 +189,6 @@ module.exports = {
     checkIfAccomodationExists,
     retriveAvailabilityOnDate,
     insertBooking,
-    decreaseAvailability
+    decreaseAvailability,
+    availabilityInfo
 }
