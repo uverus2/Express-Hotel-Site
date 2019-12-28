@@ -6,35 +6,6 @@ import Result from './result.jsx';
 import BookingForm from './form.jsx';
 import Canvas from './availability.jsx';
 
-class Shapes {
-    constructor(x, y, stroke, strokeColor, fillColor) {
-        this.x = x;
-        this.y = y;
-        this.stroke = stroke;
-        this.strokeColor = strokeColor;
-        this.fillColor = fillColor;
-    }
-};
-
-class Text extends Shapes {
-    constructor(text, baseline, font, x, y, stage) {
-        super(x, y);
-        this.text = text;
-        this.baseline = baseline;
-        this.font = font;
-        this.stage = stage;
-    }
-    textCreate() {
-        const text = new createjs.Text(`${this.text}`, `${this.font}`, "#000000");
-        text.x = this.x;
-        text.y = this.y;
-        text.textBaseline = this.baseline;
-        text.textAlign = "center";
-        this.stage.addChild(text);
-
-
-    }
-};
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -70,7 +41,7 @@ class App extends React.Component {
                 <Hero/>
                 <Search passBackUserInput={this.updateOnClick.bind(this)}/>
                 <div id="canvas" className="d-none">
-                    <Canvas key={this.state.name} name={this.state.name} acc_id={this.state.accId || 1} />
+                    <Canvas value={true} key={this.state.name} name={this.state.name} acc_id={this.state.accId || 1} />
                 </div>
                 <Result name={this.state.clickValue} value={true} passBackAccId={this.grabIdOnClick.bind(this)} passBackAccAvailability={this.grabIdOnAvailabilityID.bind(this)}/>
                 <div className="container py-4">

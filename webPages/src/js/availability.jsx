@@ -151,22 +151,26 @@ class Canvas extends React.Component {
                 const onSuccess = document.getElementById("onFormCompletion");
                 onSuccess.classList.remove("d-none");
                 onSuccess.innerHTML = `<h2>${response} </h2>`;
-                const timer = document.getElementById("countdowntimer");
-                timer.parentElement.classList.remove("d-none");
-
-                let timeleft = 5;
-                    const downloadTimer = setInterval(() => {
-                    timeleft = timeleft - 1 ;
-                    timer.textContent = timeleft;
-                    if(timeleft <= 0){
-                    clearInterval(downloadTimer)
-                    };
-                    },1000);
-
                 
-                setTimeout(()=>{
-                    location.reload();
-                },5000);
+                
+                if (this.props.value){
+                    const timer = document.getElementById("countdowntimer");
+                    timer.parentElement.classList.remove("d-none");
+
+                    let timeleft = 5;
+                        const downloadTimer = setInterval(() => {
+                        timeleft = timeleft - 1 ;
+                        timer.textContent = timeleft;
+                        if(timeleft <= 0){
+                        clearInterval(downloadTimer)
+                        };
+                        },1000);
+
+                    
+                    setTimeout(()=>{
+                        location.reload();
+                    },5000);
+                }
             }
                 }).catch(e => {
                     console.log(e);

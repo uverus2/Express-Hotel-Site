@@ -19,6 +19,10 @@ router.get("/location/:location", [
     }
 });
 
+route.get("/hello", (req,res) => {
+    res.send("Hello");   
+})
+
 // Route get Location 
 router.get("/availability/:id", [
     param("id").isLength({ min: 1 }).withMessage('ID must not be empty').isInt().withMessage('Only numbers are allowed')

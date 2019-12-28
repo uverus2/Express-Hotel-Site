@@ -7,6 +7,15 @@
     background-clip: fixed;
 }
 
+#canvasBody {
+    height: auto;
+}
+
+#calendar {
+    height: 600px;
+    width: 100%;
+}
+
 body h2,
 body h3 {
     color: #EA5A00;
@@ -42,4 +51,15 @@ body h3 {
 .form-control:focus {
     border-color: #EA5A00;
     box-shadow: 0 0 0 0.2rem rgba(234, 90, 0);
+}
+
+.btn-primary:hover {
+    background-color: #EA5A00;
+    border-color: #EA5A00;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #625311;
+    border-color: #625311;
 }

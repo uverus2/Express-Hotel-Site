@@ -10,13 +10,16 @@ class App extends React.Component {
         super(props);
         this.state = { 
             serviceName : "Places to Stay",
-            clickValue: props.name
+            clickValue: props.name,
+            accId: "",
+            name:""
         };
     }
 
     updateOnClick(name) {
         this.setState({clickValue: name});
     }
+
     render() {
 
         return (
@@ -25,7 +28,7 @@ class App extends React.Component {
                 <Hero/>
                 <Map data={this.state.clickValue}/>
                 <Search passBackUserInput={this.updateOnClick.bind(this)}/>
-                <Result value={false} name={this.state.clickValue}/>
+                <Result value={false} name={this.state.clickValue} />
             </div>
         );
     }

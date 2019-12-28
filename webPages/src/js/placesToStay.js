@@ -8,5 +8,6 @@ import "../images/bonfire.png";
 import "../images/hostel.png";
 import "../images/bed.png";
 import "../sass/placesToStay/main.scss";
+import createjs from 'createjs';
 
 ReactDOM.render( < App / > , document.getElementById("index"));

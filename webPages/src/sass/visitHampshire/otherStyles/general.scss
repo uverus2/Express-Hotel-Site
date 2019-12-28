@@ -7,10 +7,6 @@
     background-clip: fixed;
 }
 
-#canvasBody {
-    height: auto;
-}
-
 .availability a {
     font-size: 20px;
     font-weight: 600;
@@ -19,6 +15,10 @@
 .availability a:hover {
     text-decoration: underline;
     color: #625311;
+}
+
+#canvasBody {
+    height: auto;
 }
 
 #calendar {

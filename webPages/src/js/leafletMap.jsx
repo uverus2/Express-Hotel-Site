@@ -1,4 +1,6 @@
 import React from 'react';
+import Canvas from './availability.jsx';
+
 let map = ""; 
 const createElement = (el, value, optional) => {
     let createdEl = document.createElement(el);
@@ -15,6 +17,8 @@ const appendMultiple = (el, array) => {
         el.append(i);
     });
 };
+
+
 
 const createInputs = (type,inputID,placeholderText,labelText,appendTo) => {
     const div = document.createElement("div");
@@ -41,8 +45,14 @@ class Map extends React.Component {
             lat:0,
             long:0,
             username : "",
+            accId: "",
+            name:""
         };
         this.map = "";
+    }
+
+    clickedOnAvailability (acc_id,name){
+        this.setState({accId:acc_id, name:name});
     }
 
     
@@ -70,6 +80,16 @@ class Map extends React.Component {
         a.addEventListener("click", ()=> {
             form.style.display = "block";
         });
+
+        const checkAvailable = createElement("a","Check Availability");
+
+        checkAvailable.addEventListener("click", ()=> {
+            const canvasBody = document.getElementById("canvas");
+            canvasBody.classList.remove("d-none");
+            this.clickedOnAvailability(acc_id, name);
+            
+        });
+        // Add a click event to return the acc ID; 
 
         const error = createElement("h5",``);
         error.setAttribute("id","error");
@@ -115,7 +135,7 @@ class Map extends React.Component {
               }).catch(e => console.log(e));
         });
 
-        const elemntsArray = [h2,a,form,error];
+        const elemntsArray = [h2,a,form,error,checkAvailable];
         appendMultiple(popup, elemntsArray);
 
         marker.bindPopup(popup);
@@ -191,6 +211,7 @@ class Map extends React.Component {
     }
     render() {
 
+    
         const data = this.props.data
         if(data && typeof data === "object"){
             if(data.hasOwnProperty('location') !== true && data.hasOwnProperty('type') !== true && data.hasOwnProperty('error') !== true){
@@ -198,12 +219,17 @@ class Map extends React.Component {
             }
         }
         return (
+            <div>
+            <div id="canvas" className="d-none" >
+                <Canvas key={this.state.name} value={false} name={this.state.name} acc_id={this.state.accId || 1} />
+            </div>
             <div className="container py-4">
                 <div className="row">
                     <div className="col-12">
                         <div id="map"></div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
