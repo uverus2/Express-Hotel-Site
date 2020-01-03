@@ -19,9 +19,6 @@ router.get("/location/:location", [
     }
 });
 
-route.get("/hello", (req,res) => {
-    res.send("Hello");   
-})
 
 // Route get Location 
 router.get("/availability/:id", [
