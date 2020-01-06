@@ -5,6 +5,8 @@ import Search from './searchBox.jsx';
 import Result from './result.jsx';
 import Map from './leafletMap.jsx';
 
+
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -16,19 +18,23 @@ class App extends React.Component {
         };
     }
 
+    grabIdOnClick(id) {
+        console.log(id);
+    }
+
     updateOnClick(name) {
         this.setState({clickValue: name});
     }
 
     render() {
-
+       
         return (
             <div>
                 <Header serviceName={this.state.serviceName}/>
                 <Hero/>
                 <Map data={this.state.clickValue}/>
                 <Search passBackUserInput={this.updateOnClick.bind(this)}/>
-                <Result value={false} name={this.state.clickValue} />
+                <Result value={false} name={this.state.clickValue} passBackAccId={this.grabIdOnClick.bind(this)} />
             </div>
         );
     }

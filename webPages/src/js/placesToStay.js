@@ -10,4 +10,8 @@ import "../images/bed.png";
 import "../sass/placesToStay/main.scss";
 import createjs from 'createjs';
 
+//https://edward2.solent.ac.uk/node05/
+//http://localhost:3005/
+global.apiLocalHost = "http://localhost:3005/";
+
 ReactDOM.render( < App / > , document.getElementById("index"));

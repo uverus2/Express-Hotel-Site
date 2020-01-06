@@ -14,7 +14,7 @@ const findAccomodation = (location) => {
                 if (data === null || data.length <= 0) {
                     errorMessage.error = "Content Not found";
                     errorMessage.status = 404;
-                    reject(errorMessage)
+                    reject(errorMessage);
                 } else {
                     resolve(data);
                 }

@@ -14,6 +14,7 @@ class Result extends React.Component {
     render() {
         const output = this.props.name;
         const value = this.props.value;
+        console.log(output);
         if(typeof output !== "undefined" && typeof output === "object") {
             if (output.hasOwnProperty('location') || output.hasOwnProperty('type')){
                     const value = output.hasOwnProperty('location') ? "location" : "type";

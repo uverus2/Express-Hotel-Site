@@ -130,7 +130,7 @@ class Canvas extends React.Component {
             npeople: number.toString(),
         };
 
-        const url = "http://localhost:3005/api/booking";
+        const url = apiLocalHost + "api/booking";
 
         fetch(url, {
             method: 'POST',
@@ -142,19 +142,19 @@ class Canvas extends React.Component {
           }).then(response => response.json()).then(response => {
               if(typeof response === "object"){
                 if(response[Object.keys(response)[0]].msg.hasOwnProperty('errmsg')){
-                    document.getElementById("error").innerHTML=`<h2>${response[Object.keys(response)[0]].msg.errmsg} </h2>`;
+                    document.getElementById("errorTwo").innerHTML=`<h2>${response[Object.keys(response)[0]].msg.errmsg} </h2>`;
                 }else {
-                    document.getElementById("error").innerHTML=`<h2>${response[Object.keys(response)[0]].msg} </h2>`;
+                    document.getElementById("errorTwo").innerHTML=`<h2>${response[Object.keys(response)[0]].msg} </h2>`;
                 }
               }else if (typeof response === "string"){
                 document.getElementById("bookingAvailabilitySection").style.display = "none";
-                const onSuccess = document.getElementById("onFormCompletion");
+                const onSuccess = document.getElementById("onFormCompletionTwo");
                 onSuccess.classList.remove("d-none");
                 onSuccess.innerHTML = `<h2>${response} </h2>`;
                 
                 
                 if (this.props.value){
-                    const timer = document.getElementById("countdowntimer");
+                    const timer = document.getElementById("countdowntimerTwo");
                     timer.parentElement.classList.remove("d-none");
 
                     let timeleft = 5;
@@ -186,7 +186,7 @@ class Canvas extends React.Component {
 
         this.stage = new createjs.Stage(canvas);
 
-        fetch(`http://localhost:3005/api/availability/${this.state.acc_id}`).then(response => response.json()).then(response => {
+        fetch(`${apiLocalHost}api/availability/${this.state.acc_id}`).then(response => response.json()).then(response => {
           
             
             const plotDates = [
@@ -251,15 +251,15 @@ class Canvas extends React.Component {
     render (){
         return(
             <div className="container-fluid py-4" id="canvasBody">
-                <div id="onFormCompletion" className="d-none text-center py-2"></div>
-                <h3 className="d-none text-center">The page will refresh in:<span id="countdowntimer">3</span></h3>
+                <div id="onFormCompletionTwo" className="d-none text-center py-2"></div>
+                <h3 className="d-none text-center">The page will refresh in:<span id="countdowntimerTwo">3</span></h3>
                 <div className="row h-100 mx-auto" id="bookingAvailabilitySection">
                     <div className="col-12">
                         <canvas ref="canvas" id="calendar">  </canvas>
                     </div>
                     <div className="col-md-9 mx-auto">
                     <form id="formAvailable" className="d-none" onSubmit={this.handleFormSubmit}> 
-                        <div id="error" className="text-center py-2">  </div>
+                        <div id="errorTwo" className="text-center py-2">  </div>
                         <div className="form-group">
                             <label> Username</label>
                             <input type="text" className="form-control" value={this.state.username} onChange={this.handleUsername} required/>

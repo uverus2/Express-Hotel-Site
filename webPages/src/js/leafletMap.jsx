@@ -99,7 +99,7 @@ class Map extends React.Component {
         createInputs("number","npeople","Number","NumberPeople",form);
         form.append(submitButton);
         
-        const url = "http://localhost:3005/api/booking";
+        const url = `${apiLocalHost}api/booking`;
         form.addEventListener("submit", (e)=>{
             e.preventDefault();
             const username = document.getElementById("username").value;

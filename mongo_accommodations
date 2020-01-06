@@ -1,0 +1,10 @@
+{"_id":"1","name":"Pikes Peak Inn","type":"hotel","location":"Colorado","longitude":"-104.913","latitude":"38.8578","description":"A nice place to stay"}
+{"_id":"2","name":"Fireside Inn","type":"BandB","location":"Colorado","longitude":"-106.045","latitude":"39.4821","description":"A nice place to stay"}
+{"_id":"3","name":"Fawlty Towers","type":"hotel","location":"Torquay","longitude":"-3.4963","latitude":"50.4601","description":"Experience authentic 1970s Britain with charming owner"}
+{"_id":"4","name":"The Boar Inn","type":"pub","location":"Hampshire","longitude":"-1","latitude":"51","description":"A nice place to stay"}
+{"_id":"5","name":"The Dales Inn","type":"pub","location":"Yorkshire","longitude":"-2.0462","latitude":"54.1465","description":"A nice place to stay"}
+{"_id":"6","name":"Jurys Inn","type":"hotel","location":"Hampshire","longitude":"-1.401","latitude":"50.9106","description":"A nice place to stay"}
+{"_id":"7","name":"Premier Inn","type":"hotel","location":"Hampshire","longitude":"-1.3985","latitude":"50.9071","description":"A nice place to stay"}
+{"_id":"8","name":"Hollands Wood","type":"campsite","location":"Hampshire","longitude":"-1.57","latitude":"50.83","description":"A nice place to stay"}
+{"_id":"9","name":"Ashurst","type":"campsite","location":"Hampshire","longitude":"-1.53","latitude":"50.887","description":"A nice place to stay"}
+{"_id":"10","name":"Hotel Mirto","type":"hotel","location":"Greece","longitude":"22.5023","latitude":"40.105","description":"A nice place to stay"}

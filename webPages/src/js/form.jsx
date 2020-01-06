@@ -38,7 +38,7 @@ class BookingForm extends React.Component {
             npeople: number.toString(),
         };
 
-        const url = "http://localhost:3005/api/booking";
+        const url = `${apiLocalHost}api/booking`;
 
         fetch(url, {
             method: 'POST',
@@ -48,10 +48,12 @@ class BookingForm extends React.Component {
             },
             body: JSON.stringify(body)
           }).then(response => response.json()).then(response => {
+             
               if(typeof response === "object"){
                 if(response[Object.keys(response)[0]].msg.hasOwnProperty('errmsg')){
                     document.getElementById("error").innerHTML=`<h2>${response[Object.keys(response)[0]].msg.errmsg} </h2>`;
-                }else {
+                }
+                else if (response[Object.keys(response)[0]].hasOwnProperty('msg')) {
                     document.getElementById("error").innerHTML=`<h2>${response[Object.keys(response)[0]].msg} </h2>`;
                 }
               }else if (typeof response === "string"){

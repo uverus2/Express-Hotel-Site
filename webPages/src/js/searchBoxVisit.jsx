@@ -5,7 +5,7 @@ class Search extends React.Component {
     searchOnClick() {
         const search = document.getElementById("search").value; 
         
-        fetch(`http://localhost:3005/api/location/Hampshire/${search}`).then(response => response.json()).then(response => {
+        fetch(`${apiLocalHost}api/location/Hampshire/${search}`).then(response => response.json()).then(response => {
             this.props.passBackUserInput(response); 
         }).catch(e => console.log(e));
 
