@@ -8,6 +8,4 @@ import createjs from 'createjs';
 
 global.apiLocalHost = "http://localhost:3005/";
 
-
-
 ReactDOM.render( < App / > , document.getElementById("clientSite"));
