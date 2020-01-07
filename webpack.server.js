@@ -5,7 +5,7 @@ module.exports = {
         stats: "errors-only",
         contentBase: path.join(__dirname, './webPages/dist'),
         host: "127.0.0.1", // Defaults to `localhost`
-        port: 9003, // Defaults to 8080
+        port: 9001, // Defaults to 8080
         open: true,
         compress: true,
         overlay: true,

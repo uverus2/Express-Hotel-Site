@@ -16,6 +16,5 @@ const DatesSchema = new mongoose.Schema({
 });
 
 const Dates = mongoose.model("Dates", DatesSchema, "mongo_acc_dates");
-//const Dates = mongoose.model("Dates", DatesSchema, "acc_dates");
 
 module.exports = Dates;

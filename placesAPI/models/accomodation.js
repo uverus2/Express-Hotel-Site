@@ -36,6 +36,5 @@ const AccomodationSchema = new mongoose.Schema({
 });
 
 const Accomodation = mongoose.model("Accomodation", AccomodationSchema, "mongo_accommodations");
-//const Accomodation = mongoose.model("Accomodation", AccomodationSchema, "accommodations");
 
 module.exports = Accomodation;
